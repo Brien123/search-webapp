@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width: 800px; margin: 0 auto; padding: 20px; text-align: center;">
+        <h1>Search Results</h1>
+        {% if df.empty %}
+            <p>No results found.</p>
+        {% else %}
+            <table style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Song</th>
+                        <th>Performer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for index, row in df.iterrows() %}
+                    <tr>
+                        <td>{{ row['song'] }}</td>
+                        <td>{{ row['performer'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        <br>
+        <a href="{{ url_for('index') }}" style="text-decoration: none;">Go back to Home</a>
+    </div>
+</body>
+</html>
